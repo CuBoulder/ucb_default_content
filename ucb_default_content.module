@@ -1,0 +1,14 @@
+<?php
+use Drupal\node\Entity\Node;
+function ucb_default_content_install() {
+    $defaultPageNode = Node::create([
+        'type' => 'page',
+        'title' => 'Web Express v2 Default Page',
+        'path' => [ 'alias' => '/default-page', 'pathauto' => Drupal\pathauto\PathautoState::SKIP ],
+        'body' => 'Congratulations, your Web Express v2 site is up and running!'
+    ]);
+    $defaultPageNode->enforceIsNew();
+    $defaultPageNode->save();
+    Drupal::configFactory()->getEditable('system.site')->set('page.front', '/default-page')->save();
+}
+?>

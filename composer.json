@@ -1,0 +1,6 @@
+{
+    "name": "cu-boulder/ucb_default_content",
+    "description": "Provides default content for new sites.",
+    "license": "MIT",
+    "type": "drupal-custom-module"
+}
