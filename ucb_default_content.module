@@ -3,12 +3,13 @@ use Drupal\node\Entity\Node;
 function ucb_default_content_install() {
     $defaultPageNode = Node::create([
         'type' => 'page',
-        'title' => 'Web Express v2 Default Page',
-        'path' => [ 'alias' => '/default-page', 'pathauto' => Drupal\pathauto\PathautoState::SKIP ],
-        'body' => 'Congratulations, your Web Express v2 site is up and running!'
+        'title' => 'Home Page',
+        'path' => [ 'alias' => '/homepage', 'pathauto' => Drupal\pathauto\PathautoState::SKIP ],
+        'body' => 'Congratulations, your Web Express site is up and running!
+		Please click the EDIT button at the top of the screen to edit this page.'
     ]);
     $defaultPageNode->enforceIsNew();
     $defaultPageNode->save();
-    Drupal::configFactory()->getEditable('system.site')->set('page.front', '/default-page')->save();
+    Drupal::configFactory()->getEditable('system.site')->set('page.front', '/homepage')->save();
 }
 ?>
