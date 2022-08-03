@@ -1,15 +1,16 @@
 <?php
-use Drupal\node\Entity\Node;
+
+/**
+ * Implements hook_install().
+ */
 function ucb_default_content_install() {
-    $defaultPageNode = Node::create([
-        'type' => 'page',
-        'title' => 'Home Page',
-        'path' => [ 'alias' => '/homepage', 'pathauto' => Drupal\pathauto\PathautoState::SKIP ],
-        'body' => 'Congratulations, your Web Express site is up and running!
-		Please click the EDIT button at the top of the screen to edit this page.'
-    ]);
-    $defaultPageNode->enforceIsNew();
-    $defaultPageNode->save();
-    Drupal::configFactory()->getEditable('system.site')->set('page.front', '/homepage')->save();
+	\Drupal\node\Entity\Node::create([
+		'type' => 'basic_page',
+		'title' => 'Home Page',
+		'path' => ['alias' => '/homepage', 'pathauto' => \Drupal\pathauto\PathautoState::SKIP],
+		'body' => 'Congratulations, your Web Express site is up and running!
+Please click the EDIT button at the top of the screen to edit this page.'
+	])->enforceIsNew()->save();
+	// Set the newly-created node as the site homepage
+	\Drupal::configFactory()->getEditable('system.site')->set('page.front', '/homepage')->save();
 }
-?>

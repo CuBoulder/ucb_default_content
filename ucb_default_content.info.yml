@@ -1,24 +1,9 @@
-name: UCB Default Content
-description: 'Provides default content for new sites.'
+name: CU Boulder Default Content
+description: 'Provides default content for new CU Boulder sites.'
 type: module
 core_version_requirement: '^8.9 || ^9'
 dependencies:
-  - entity_reference_revisions
-  - field
-  - field_group
-  - image
-  - link
-  - media
-  - media_library
   - node
-  - paragraphs
-  - path
-  - pathauto
-  - rdf
-  - taxonomy
-  - telephone
-  - text
-  - ucb_custom_paragraphs
-  - user
-version: '1.0.0'
-package: 'UCB Default Content'
+  - system
+version: '1.1'
+package: CU Boulder
