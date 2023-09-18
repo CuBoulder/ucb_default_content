@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- ### Adding in correct dependency for cu custom entities
+  Resolves CuBoulder/tiamat-theme#488
+---
+
 - ### Adds `CHANGELOG.MD` and workflows; updates `core_version_requirement` to indicate D10 compatibility
   Resolves CuBoulder/ucb_default_content#2
 ---
