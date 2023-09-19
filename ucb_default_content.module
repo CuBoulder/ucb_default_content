@@ -13,4 +13,14 @@ Please click the EDIT button at the top of the screen to edit this page.'
 	])->enforceIsNew()->save();
 	// Set the newly-created node as the site homepage
 	\Drupal::configFactory()->getEditable('system.site')->set('page.front', '/homepage')->save();
+
+	//404 Page
+	\Drupal\node\Entity\Node::create([
+		'type' => 'basic_page',
+		'title' => 'Page Not Found',
+		'path' => ['alias' => '/404', 'pathauto' => \Drupal\pathauto\PathautoState::SKIP],
+		'body' => '404 page'
+	])->enforceIsNew()->save();
+	// Set the newly-created node as the site homepage
+	\Drupal::configFactory()->getEditable('system.site')->set('page.404', '/404')->save();
 }
