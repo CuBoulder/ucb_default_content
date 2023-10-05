@@ -15,15 +15,14 @@ Please click the EDIT button at the top of the screen to edit this page.'
 	\Drupal::configFactory()->getEditable('system.site')->set('page.front', '/homepage')->save();
 
 	//404 Page
-		//Method to grab relative path
-	//img = './web/modules/custom/ucb_default_content/img/img-ucb-404.jpeg'
+	$image_path = "/themes/custom/boulder_base/images/img-ucb-404.jpeg";
 	\Drupal\node\Entity\Node::create([
 		'type' => 'basic_page',
 		'title' => 'Page Not Found',
 		'path' => ['alias' => '/404', 'pathauto' => \Drupal\pathauto\PathautoState::SKIP],			
 		'body' => [
 			'summary' => '',
-    		'value' => '<img src="./themes/custom/boulder_base/images/img-ucb-404.jpeg">',
+    		'value' => '<img src="' . $image_path. '">',
     		'format' => 'full_html'
 	]])->enforceIsNew()->save();
 	// Set the newly-created node as the site homepage
