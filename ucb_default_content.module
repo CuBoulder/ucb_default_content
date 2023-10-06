@@ -22,7 +22,7 @@ Please click the EDIT button at the top of the screen to edit this page.'
 		'path' => ['alias' => '/404', 'pathauto' => \Drupal\pathauto\PathautoState::SKIP],			
 		'body' => [
 			'summary' => '',
-    		'value' => '<img src="' . $image_path. '">',
+    		'value' => '<img src="' . $image_path. '" alt = "The page you are looking for appears to have been moved, deleted, or does not exist.">',
     		'format' => 'full_html'
 	]])->enforceIsNew()->save();
 	// Set the newly-created node as the site homepage
