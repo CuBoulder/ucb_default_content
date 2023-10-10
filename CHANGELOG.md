@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- ### Adds 404 page
+  Closes https://github.com/CuBoulder/tiamat-theme/issues/484. Adds the implementation of the 404 page.
+---
+
 - ### Adding in correct dependency for cu custom entities
   Resolves CuBoulder/tiamat-theme#488
 ---

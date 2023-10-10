@@ -1,9 +1,5 @@
 <?php
-
-/**
- * Implements hook_install().
- */
-function ucb_default_content_install() {
+function ucb_default_content_update_9501() {
 	\Drupal\node\Entity\Node::create([
 		'type' => 'basic_page',
 		'title' => 'Home Page',
@@ -27,5 +23,4 @@ Please click the EDIT button at the top of the screen to edit this page.'
 	]])->enforceIsNew()->save();
 	// Set the newly-created node as the site homepage
 	\Drupal::configFactory()->getEditable('system.site')->set('page.404', '/404')->save();
-
 }
