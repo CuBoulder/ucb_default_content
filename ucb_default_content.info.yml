@@ -3,8 +3,9 @@ description: 'Provides default content for new CU Boulder sites.'
 type: module
 core_version_requirement: '^9.5 || ^10'
 dependencies:
-  - node
-  - system
   - cu_boulder_content_types
-version: '1.2'
+  - node
+  - pathauto
+  - system
+version: '1.3'
 package: CU Boulder

@@ -1,26 +1,59 @@
 <?php
-function ucb_default_content_update_9501() {
-	\Drupal\node\Entity\Node::create([
-		'type' => 'basic_page',
-		'title' => 'Home Page',
-		'path' => ['alias' => '/homepage', 'pathauto' => \Drupal\pathauto\PathautoState::SKIP],
-		'body' => 'Congratulations, your Web Express site is up and running!
-Please click the EDIT button at the top of the screen to edit this page.'
-	])->enforceIsNew()->save();
-	// Set the newly-created node as the site homepage
-	\Drupal::configFactory()->getEditable('system.site')->set('page.front', '/homepage')->save();
 
-	//404 Page
-	$image_path = "/themes/custom/boulder_base/images/img-ucb-404.jpeg";
-	\Drupal\node\Entity\Node::create([
-		'type' => 'basic_page',
-		'title' => 'Page Not Found',
-		'path' => ['alias' => '/404', 'pathauto' => \Drupal\pathauto\PathautoState::SKIP],			
-		'body' => [
-			'summary' => '',
-    		'value' => '<img src="' . $image_path. '" alt = "The page you are looking for appears to have been moved, deleted, or does not exist.">',
-    		'format' => 'full_html'
-	]])->enforceIsNew()->save();
-	// Set the newly-created node as the site homepage
-	\Drupal::configFactory()->getEditable('system.site')->set('page.404', '/404')->save();
+/**
+ * @file
+ * Contains functional hooks used by the CU Boulder Default Content module.
+ */
+
+use Drupal\node\Entity\Node;
+use Drupal\pathauto\PathautoState;
+
+/**
+ * Runs when the CU Boulder Default Content module is installed.
+ *
+ * Implements hook_install().
+ */
+function ucb_default_content_install() {
+  _create_home_page();
+  _create_404_page();
+}
+
+/**
+ * Creates an updated 404 page.
+ *
+ * Introduced in version 1.3 to address ucb_default_content#6.
+ */
+function ucb_default_content_update_9502() {
+  _create_404_page();
+}
+
+/**
+ * Creates the home page.
+ *
+ * @internal
+ */
+function _create_home_page() {
+  Node::create([
+    'type' => 'basic_page',
+    'title' => 'Home Page',
+    'path' => ['alias' => '/homepage', 'pathauto' => PathautoState::SKIP],
+    'body' => 'Congratulations, your Web Express site is up and running!
+Please click the EDIT button at the top of the screen to edit this page.',
+  ])->enforceIsNew()->save();
+  \Drupal::configFactory()->getEditable('system.site')->set('page.front', '/homepage')->save();
+}
+
+/**
+ * Creates the 404 page.
+ *
+ * @internal
+ */
+function _create_404_page() {
+  Node::create([
+    'type' => 'basic_page',
+    'title' => 'Page Not Found',
+    'path' => ['alias' => '/404', 'pathauto' => PathautoState::SKIP],
+    'body' => 'The page you are looking for appears to have been moved, deleted, or does not exist.',
+  ])->enforceIsNew()->save();
+  \Drupal::configFactory()->getEditable('system.site')->set('page.404', '/404')->save();
 }
