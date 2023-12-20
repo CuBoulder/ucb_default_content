@@ -5,6 +5,7 @@ core_version_requirement: '^9.5 || ^10'
 dependencies:
   - cu_boulder_content_types
   - node
+  - path_alias
   - pathauto
   - system
 version: '1.3'
