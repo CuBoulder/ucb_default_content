@@ -31,11 +31,10 @@ function ucb_default_content_update_9502() {
       $node->body->value = '<p>The page you are looking for appears to have been moved, deleted, or does not exist.</p>';
       $node->body->format = 'wysiwyg';
       $node->save();
-    }
-    else {
-      _create_404_page();
+      return;
     }
   }
+  _create_404_page();
 }
 
 /**
