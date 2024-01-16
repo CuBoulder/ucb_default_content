@@ -1,6 +1,6 @@
 {
-	"name": "cu-boulder/ucb_default_content",
-	"description": "Provides default content for new CU Boulder sites.",
-	"license": "GPL-2.0-or-later",
-	"type": "drupal-custom-module"
+    "name": "cu-boulder/ucb_default_content",
+    "description": "Provides default content for new CU Boulder sites.",
+    "license": "GPL-2.0-or-later",
+    "type": "drupal-custom-module"
 }

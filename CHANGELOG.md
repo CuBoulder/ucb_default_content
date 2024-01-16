@@ -9,6 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- ### CU Boulder Default Content v1.3
+  This update:
+  - Updates the 404 page to remove the image and be editable by users with permission. Resolves CuBoulder/ucb_default_content#6
+  - Reorganizes CU Boulder Default Content to be in compliance with Drupal coding standards.
+  
+  Sister PR in: [tiamat-theme](https://github.com/CuBoulder/tiamat-theme/pull/601)
+---
+
 - ### Adds 404 page
   Closes https://github.com/CuBoulder/tiamat-theme/issues/484. Adds the implementation of the 404 page.
 ---
