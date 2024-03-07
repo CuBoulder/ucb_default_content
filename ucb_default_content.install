@@ -43,14 +43,15 @@ function ucb_default_content_update_9502() {
  * @internal
  */
 function _create_home_page() {
-  Node::create([
+  $node = Node::create([
     'type' => 'basic_page',
     'title' => 'Home Page',
     'path' => ['alias' => '/homepage', 'pathauto' => PathautoState::SKIP],
     'body' => 'Congratulations, your Web Express site is up and running!
 Please click the EDIT button at the top of the screen to edit this page.',
-  ])->enforceIsNew()->save();
-  \Drupal::configFactory()->getEditable('system.site')->set('page.front', '/homepage')->save();
+  ]);
+  $node->enforceIsNew()->save();
+  \Drupal::configFactory()->getEditable('system.site')->set('page.front', '/node/' . $node->id())->save();
 }
 
 /**
@@ -59,11 +60,12 @@ Please click the EDIT button at the top of the screen to edit this page.',
  * @internal
  */
 function _create_404_page() {
-  Node::create([
+  $node = Node::create([
     'type' => 'basic_page',
     'title' => 'Page Not Found',
     'path' => ['alias' => '/404', 'pathauto' => PathautoState::SKIP],
     'body' => 'The page you are looking for appears to have been moved, deleted, or does not exist.',
-  ])->enforceIsNew()->save();
-  \Drupal::configFactory()->getEditable('system.site')->set('page.404', '/404')->save();
+  ]);
+  $node->enforceIsNew()->save();
+  \Drupal::configFactory()->getEditable('system.site')->set('page.404', '/node/' . $node->id())->save();
 }
