@@ -46,7 +46,7 @@ function _create_home_page() {
   $node = Node::create([
     'type' => 'basic_page',
     'title' => 'Home',
-    'path' => ['alias' => '/homepage', 'pathauto' => PathautoState::SKIP],
+    'path' => ['alias' => '/home', 'pathauto' => PathautoState::SKIP],
     'body' => 'Congratulations, your Web Express site is up and running!
 Please click the EDIT button at the top of the screen to edit this page.',
   ]);
