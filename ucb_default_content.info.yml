@@ -7,6 +7,7 @@ dependencies:
   - node
   - path_alias
   - pathauto
+  - simple_sitemap
   - system
 version: '1.3.2'
 package: CU Boulder
