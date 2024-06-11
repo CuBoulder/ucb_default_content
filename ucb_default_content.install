@@ -90,12 +90,22 @@ function _set_simplesitemap_no_index($nid) {
   // since 2019 (!!!):
   // https://www.drupal.org/project/simple_sitemap/issues/3034070
   // BEWARE OF BREAKING CHANGES to Simple XML Sitemap.
-  /** @var \Drupal\simple_sitemap\Manager\EntityManager */
-  $sitemapEntityManageer = \Drupal::service('simple_sitemap.entity_manager');
-  $sitemapEntityManageer->setEntityInstanceSettings('node', $nid, [
-    'index' => '0',
-    'priority' => '0.5',
-    'changefreq' => '',
-    'include_images' => '0',
-  ]);
+  \Drupal::database()->merge('simple_sitemap_entity_overrides')
+    ->keys([
+      'type' => 'default',
+      'entity_type' => 'node',
+      'entity_id' => $nid,
+    ])
+    ->fields([
+      'type' => 'default',
+      'entity_type' => 'node',
+      'entity_id' => $nid,
+      'inclusion_settings' => serialize([
+        'index' => '0',
+        'priority' => '0.5',
+        'changefreq' => '',
+        'include_images' => '0',
+      ]),
+    ])
+    ->execute();
 }
