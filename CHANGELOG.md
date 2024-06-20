@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- ###  Prevents `/home` and `/404` pages from being indexed by Simple XML Sitemap
+  It's a bit of a hack but it works. Resolves CuBoulder/ucb_default_content#12
+---
+
 - ### Fixes home page redirect (v1.3.1)
   On a new site install, the `/` path was redirecting to `/homepage` due to incorrectly setting the `system.site.page.front` setting to the node alias path rather than the node id path. This update resolves the issue.
   
