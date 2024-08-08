@@ -5,8 +5,8 @@
  * Contains functional hooks used by the CU Boulder Default Content module.
  */
 
+use Drupal\ucb_default_content\DefaultContent;
 use Drupal\node\Entity\Node;
-use Drupal\pathauto\PathautoState;
 
 /**
  * Runs when the CU Boulder Default Content module is installed.
@@ -14,8 +14,8 @@ use Drupal\pathauto\PathautoState;
  * Implements hook_install().
  */
 function ucb_default_content_install() {
-  _create_home_page();
-  _create_404_page();
+  DefaultContent::create_homepage();
+  DefaultContent::create_404_page();
 }
 
 /**
@@ -34,84 +34,5 @@ function ucb_default_content_update_9502() {
       return;
     }
   }
-  _create_404_page();
-}
-
-/**
- * Creates the home page.
- *
- * @internal
- */
-function _create_home_page() {
-  $node = Node::create([
-    'type' => 'basic_page',
-    'title' => 'Home',
-    'path' => ['alias' => '/home', 'pathauto' => PathautoState::SKIP],
-    'body' => 'Congratulations, your Web Express site is up and running!
-Please click the EDIT button at the top of the screen to edit this page.',
-  ]);
-  $node->enforceIsNew()->save();
-  $nid = $node->id();
-  \Drupal::configFactory()->getEditable('system.site')->set('page.front', '/node/' . $nid)->save();
-  _set_simplesitemap_no_index($nid);
-}
-
-/**
- * Creates the 404 page.
- *
- * @internal
- */
-function _create_404_page() {
-  $node = Node::create([
-    'type' => 'basic_page',
-    'title' => 'Page Not Found',
-    'path' => ['alias' => '/404', 'pathauto' => PathautoState::SKIP],
-    'body' => 'The page you are looking for appears to have been moved, deleted, or does not exist.',
-  ]);
-  $node->enforceIsNew()->save();
-  $nid = $node->id();
-  \Drupal::configFactory()->getEditable('system.site')->set('page.404', '/node/' . $nid)->save();
-  _set_simplesitemap_no_index($nid);
-}
-
-/**
- * Sets a node to not be indexed by Simple XML Sitemap.
- *
- * @param string $nid
- *   The id of the node.
- *
- * @internal
- */
-function _set_simplesitemap_no_index($nid) {
-  // This method may not be part of the public API but there is no other clean
-  // way of doing this. Simple XML Sitemap still uses a custom
-  // `simple_sitemap_entity_overrides` DB table to set these overrides. There's
-  // an issue to store these overrides as fields on the entity but it's been
-  // open since 2019 (!!!):
-  // https://www.drupal.org/project/simple_sitemap/issues/3034070
-  // BEWARE OF BREAKING CHANGES to Simple XML Sitemap.
-  $database = \Drupal::database();
-  if ($database->schema()->tableExists('simple_sitemap_entity_overrides')) {
-    $database->merge('simple_sitemap_entity_overrides')
-      ->keys([
-        'type' => 'default',
-        'entity_type' => 'node',
-        'entity_id' => $nid,
-      ])
-      ->fields([
-        'type' => 'default',
-        'entity_type' => 'node',
-        'entity_id' => $nid,
-        'inclusion_settings' => serialize([
-          'index' => '0',
-          'priority' => '0.5',
-          'changefreq' => '',
-          'include_images' => '0',
-        ]),
-      ])
-      ->execute();
-  }
-  else {
-    \Drupal::logger('ucb_default_content')->warning('Failed to set Simple XML Sitemap no index (table doesn\'t exist). Simple XML Sitemap isn\'t installed or changed something in an update.');
-  }
+  DefaultContent::create_404_page();
 }
