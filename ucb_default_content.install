@@ -5,7 +5,6 @@
  * Contains functional hooks used by the CU Boulder Default Content module.
  */
 
-use Drupal\ucb_default_content\DefaultContent;
 use Drupal\node\Entity\Node;
 
 /**
@@ -14,8 +13,9 @@ use Drupal\node\Entity\Node;
  * Implements hook_install().
  */
 function ucb_default_content_install() {
-  DefaultContent::create_homepage();
-  DefaultContent::create_404_page();
+  $defaultContent = \Drupal::service('ucb_default_content');
+  $defaultContent->create_homepage();
+  $defaultContent->create_404_page();
 }
 
 /**
@@ -34,5 +34,6 @@ function ucb_default_content_update_9502() {
       return;
     }
   }
-  DefaultContent::create_404_page();
+  $defaultContent = \Drupal::service('ucb_default_content');
+  $defaultContent->create_404_page();
 }
