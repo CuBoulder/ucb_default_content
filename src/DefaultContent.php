@@ -101,7 +101,7 @@ class DefaultContent {
     // but it's been open since 2019 (!!!):
     // https://www.drupal.org/project/simple_sitemap/issues/3034070
     // BEWARE OF BREAKING CHANGES to Simple XML Sitemap.
-    if ($this->database->schema->tableExists('simple_sitemap_entity_overrides')) {
+    if ($this->database->schema()->tableExists('simple_sitemap_entity_overrides')) {
       $this->database->merge('simple_sitemap_entity_overrides')
         ->keys([
           'type' => 'default',
