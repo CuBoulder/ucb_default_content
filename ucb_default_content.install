@@ -14,8 +14,8 @@ use Drupal\node\Entity\Node;
  */
 function ucb_default_content_install() {
   $defaultContent = \Drupal::service('ucb_default_content');
-  $defaultContent->create_homepage();
-  $defaultContent->create_404_page();
+  $defaultContent->createHomepage();
+  $defaultContent->create404Page();
 }
 
 /**
@@ -35,5 +35,5 @@ function ucb_default_content_update_9502() {
     }
   }
   $defaultContent = \Drupal::service('ucb_default_content');
-  $defaultContent->create_404_page();
+  $defaultContent->create404Page();
 }
