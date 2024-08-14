@@ -1,0 +1,7 @@
+services:
+  ucb_default_content:
+    class: 'Drupal\ucb_default_content\DefaultContent'
+    arguments: # The list of arguments will match the constructor of the class exactly
+      - '@config.factory'
+      - '@logger.factory'
+      - '@database'

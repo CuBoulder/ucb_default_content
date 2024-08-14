@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- ### refactor code to be reusable elsewhere
+  Refactored code to be able to grab it easily in ucb_drush_commands. See CuBoulder/ucb_drush_commands#1
+  
+  closes #14
+---
+
 - ###  Prevents `/home` and `/404` pages from being indexed by Simple XML Sitemap
   It's a bit of a hack but it works. Resolves CuBoulder/ucb_default_content#12
 ---
